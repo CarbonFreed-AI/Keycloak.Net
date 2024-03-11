@@ -20,8 +20,7 @@ namespace Keycloak.Net.Common.Extensions
                 })
                 .ReceiveJson().ConfigureAwait(false);
 
-            string accessToken = result
-                .access_token.ToString();
+            string accessToken = result.access_token.ToString();
 
             return accessToken;
         }
