@@ -1,6 +1,5 @@
 ﻿using Keycloak.Net.Models.Common;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Keycloak.Net.Models.Components
 {

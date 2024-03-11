@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class LocaleConverter : JsonEnumConverter<Locale>
     {
-        private static readonly Dictionary<Locale, string> s_pairs = new Dictionary<Locale, string>
+        private static readonly Dictionary<Locale, string> s_pairs = new()
         {
             [Locale.En] = "en"
         };

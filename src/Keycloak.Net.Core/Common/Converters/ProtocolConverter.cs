@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class ProtocolConverter : JsonEnumConverter<Protocol>
     {
-        private static readonly Dictionary<Protocol, string> s_pairs = new Dictionary<Protocol, string>
+        private static readonly Dictionary<Protocol, string> s_pairs = new()
         {
             [Protocol.DockerV2] = "dockerv2",
             [Protocol.OpenIdConnect] = "openid-connect",

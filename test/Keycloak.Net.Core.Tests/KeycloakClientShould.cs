@@ -15,7 +15,7 @@ namespace Keycloak.Net.Tests
                 .Build();
 
             string url = configuration["url"];
-            string userName = configuration["userName"];
+            string userName = configuration["username"];
             string password = configuration["password"];
 
             _client = new KeycloakClient(url, userName, password);

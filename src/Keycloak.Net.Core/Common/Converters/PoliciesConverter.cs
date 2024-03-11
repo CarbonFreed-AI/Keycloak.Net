@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.RealmsAdmin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class PoliciesConverter : JsonEnumConverter<Policies>
     {
-        private static readonly Dictionary<Policies, string> s_pairs = new Dictionary<Policies, string>
+        private static readonly Dictionary<Policies, string> s_pairs = new()
         {
             [Policies.Skip] = "SKIP",
             [Policies.Overwrite] = "OVERWRITE",

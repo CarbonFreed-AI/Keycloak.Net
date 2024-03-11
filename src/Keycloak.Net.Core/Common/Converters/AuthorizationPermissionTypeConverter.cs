@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.AuthorizationPermissions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class AuthorizationPermissionTypeConverter : JsonEnumConverter<AuthorizationPermissionType>
     {
-        private static readonly Dictionary<AuthorizationPermissionType, string> SPairs = new Dictionary<AuthorizationPermissionType, string>
+        private static readonly Dictionary<AuthorizationPermissionType, string> SPairs = new()
         {
             [AuthorizationPermissionType.Scope] = "scope",
             [AuthorizationPermissionType.Resource] = "resource"

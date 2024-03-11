@@ -1,7 +1,4 @@
-﻿using Flurl.Http;
-using Keycloak.Net.Models.Key;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Keycloak.Net.Models.Key;
 
 namespace Keycloak.Net
 {
@@ -9,7 +6,7 @@ namespace Keycloak.Net
     {
         public async Task<KeysMetadata> GetKeysAsync(string realm, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/keys")
-            .GetJsonAsync<KeysMetadata>(cancellationToken)
+            .GetJsonAsync<KeysMetadata>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
     }
 }

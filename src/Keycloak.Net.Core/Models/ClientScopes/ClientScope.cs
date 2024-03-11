@@ -1,6 +1,5 @@
 ﻿using Keycloak.Net.Models.ProtocolMappers;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Keycloak.Net.Models.ClientScopes
 {

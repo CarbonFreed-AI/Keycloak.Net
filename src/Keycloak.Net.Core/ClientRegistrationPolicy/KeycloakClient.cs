@@ -1,8 +1,4 @@
-﻿using Flurl.Http;
-using Keycloak.Net.Models.Components;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Keycloak.Net.Models.Components;
 
 namespace Keycloak.Net
 {
@@ -10,7 +6,7 @@ namespace Keycloak.Net
     {
         public async Task<IEnumerable<ComponentType>> GetRetrieveProvidersBasePathAsync(string realm, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/client-registration-policy/providers")
-            .GetJsonAsync<IEnumerable<ComponentType>>(cancellationToken)
+            .GetJsonAsync<IEnumerable<ComponentType>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
     }
 }

@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class JsonTypeLabelConverter : JsonEnumConverter<JsonTypeLabel>
     {
-        private static readonly Dictionary<JsonTypeLabel, string> s_pairs = new Dictionary<JsonTypeLabel, string>
+        private static readonly Dictionary<JsonTypeLabel, string> s_pairs = new()
         {
             [JsonTypeLabel.Boolean] = "boolean",
             [JsonTypeLabel.ClientList] = "clientlist",

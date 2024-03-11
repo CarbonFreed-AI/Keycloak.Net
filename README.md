@@ -6,8 +6,8 @@
  * allow usage of CancellationTokens
  * changed ClientConfig to Dictionary<string, string>
  * removed signing
- * .net 6 support only
- * updated for keycloak version 17+
+ * .net 8 upgraded
+ * updated for keycloak version 23+
  * added support for changing default `AdminClientId` which has default `admin-cli` value
 
  To use different AdminClientId, use newly introduced KeyCloakOptions:
@@ -33,9 +33,9 @@
 );
  ```
 
-C# client for [Keycloak](https://www.keycloak.org/) 6.x
+C# client for [Keycloak](https://www.keycloak.org/) 23.x
 
-See documentation at [https://www.keycloak.org/docs-api/6.0/rest-api/](https://www.keycloak.org/docs-api/6.0/rest-api/)
+See documentation at [https://www.keycloak.org/docs-api/23.0.0/rest-api/index.html](https://www.keycloak.org/docs-api/23.0.0/rest-api/index.html)
 
 ## Features
 * [X] Attack Detection

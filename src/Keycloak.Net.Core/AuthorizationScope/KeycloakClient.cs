@@ -1,8 +1,4 @@
-﻿using Flurl.Http;
-using Keycloak.Net.Models.AuthorizationScopes;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Keycloak.Net.Models.AuthorizationScopes;
 
 namespace Keycloak.Net
 {
@@ -12,7 +8,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{resourceServerId}/authz/resource-server/scope")
-                .PostJsonAsync(scope, cancellationToken)
+                .PostJsonAsync(scope, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -31,20 +27,20 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{resourceServerId}/authz/resource-server/scope")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<AuthorizationScope>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<AuthorizationScope>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         public async Task<AuthorizationScope> GetAuthorizationScopeAsync(string realm, string resourceServerId, string scopeId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{resourceServerId}/authz/resource-server/scope/{scopeId}")
-            .GetJsonAsync<AuthorizationScope>(cancellationToken)
+            .GetJsonAsync<AuthorizationScope>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<bool> UpdateAuthorizationScopeAsync(string realm, string resourceServerId, string scopeId, AuthorizationScope scope, CancellationToken cancellationToken = default)
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{resourceServerId}/authz/resource-server/scope/{scopeId}")
-                .PutJsonAsync(scope, cancellationToken)
+                .PutJsonAsync(scope, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -53,7 +49,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{resourceServerId}/authz/resource-server/scope/{scopeId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }

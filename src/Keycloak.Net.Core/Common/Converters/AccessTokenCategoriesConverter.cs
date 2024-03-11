@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Clients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class AccessTokenCategoriesConverter : JsonEnumConverter<AccessTokenCategories>
     {
-        private static readonly Dictionary<AccessTokenCategories, string> s_pairs = new Dictionary<AccessTokenCategories, string>
+        private static readonly Dictionary<AccessTokenCategories, string> s_pairs = new()
         {
             [AccessTokenCategories.Internal] = "INTERNAL",
             [AccessTokenCategories.Access] = "ACCESS",

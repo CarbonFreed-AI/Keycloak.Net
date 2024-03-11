@@ -1,10 +1,9 @@
 ﻿using Flurl;
-using Flurl.Http;
 using Flurl.Http.Configuration;
+using Flurl.Http.Newtonsoft;
 using Keycloak.Net.Common.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
 
 namespace Keycloak.Net
 {
@@ -55,7 +54,7 @@ namespace Keycloak.Net
 
         private IFlurlRequest GetBaseUrl(string authenticationRealm) => new Url(_url)
             .AppendPathSegment(_options.Prefix)
-            .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
+            .WithSettings(settings => settings.JsonSerializer = _serializer)
             .WithAuthentication(_getToken, _url, _options.AuthenticationRealm ?? authenticationRealm, _userName, _password, _clientSecret, _options);
     }
 

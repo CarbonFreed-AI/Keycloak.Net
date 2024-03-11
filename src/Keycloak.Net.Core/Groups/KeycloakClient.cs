@@ -1,12 +1,8 @@
-﻿using Flurl.Http;
+﻿using Flurl.Http.Newtonsoft;
 using Keycloak.Net.Common.Extensions;
 using Keycloak.Net.Models.Common;
 using Keycloak.Net.Models.Groups;
 using Keycloak.Net.Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Keycloak.Net
 {
@@ -16,12 +12,13 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups")
-                .PostJsonAsync(group, cancellationToken)
+                .PostJsonAsync(group, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
 
-        public async Task<IEnumerable<Group>> GetGroupHierarchyAsync(string realm, int? first = null, int? max = null, string search = null, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Group>> GetGroupHierarchyAsync(string realm, int? first = null, int? max = null, string search = null,
+            CancellationToken cancellationToken = default)
         {
             var queryParams = new Dictionary<string, object>
             {
@@ -34,7 +31,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<Group>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Group>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -49,7 +46,7 @@ namespace Keycloak.Net
             var result = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/count")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync(cancellationToken)
+                .GetJsonAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
 
             return Convert.ToInt32(DynamicExtensions.GetFirstPropertyValue(result));
@@ -59,7 +56,7 @@ namespace Keycloak.Net
         {
             var result = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}")
-                .GetJsonAsync<Group>(cancellationToken)
+                .GetJsonAsync<Group>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
 
             return result;
@@ -69,7 +66,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}")
-                .PutJsonAsync(group, cancellationToken)
+                .PutJsonAsync(group, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -78,7 +75,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -87,20 +84,22 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/children")
-                .PostJsonAsync(group, cancellationToken)
+                .PostJsonAsync(group, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
 
-        public async Task<ManagementPermission> GetGroupClientAuthorizationPermissionsInitializedAsync(string realm, string groupId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
+        public async Task<ManagementPermission>
+            GetGroupClientAuthorizationPermissionsInitializedAsync(string realm, string groupId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/management/permissions")
-            .GetJsonAsync<ManagementPermission>(cancellationToken)
+            .GetJsonAsync<ManagementPermission>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
-        public async Task<ManagementPermission> SetGroupClientAuthorizationPermissionsInitializedAsync(string realm, string groupId, ManagementPermission managementPermission, CancellationToken cancellationToken = default) =>
+        public async Task<ManagementPermission> SetGroupClientAuthorizationPermissionsInitializedAsync(string realm, string groupId, ManagementPermission managementPermission,
+            CancellationToken cancellationToken = default) =>
             await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/management/permissions")
-                .PutJsonAsync(managementPermission, cancellationToken)
+                .PutJsonAsync(managementPermission, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<ManagementPermission>()
                 .ConfigureAwait(false);
 
@@ -115,7 +114,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/members")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<User>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<User>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
     }

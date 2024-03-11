@@ -1,10 +1,6 @@
-﻿using Flurl.Http;
-using Keycloak.Net.Models.AuthorizationPermissions;
+﻿using Keycloak.Net.Models.AuthorizationPermissions;
 using Keycloak.Net.Models.AuthorizationScopes;
 using Keycloak.Net.Models.Clients;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using AuthorizationResource = Keycloak.Net.Models.AuthorizationResources.AuthorizationResource;
 
 namespace Keycloak.Net
@@ -16,7 +12,7 @@ namespace Keycloak.Net
             await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/permission")
                 .AppendPathSegment(permission.Type == AuthorizationPermissionType.Scope ? "/scope" : "/resource")
-                .PostJsonAsync(permission, cancellationToken)
+                .PostJsonAsync(permission, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<AuthorizationPermission>()
                 .ConfigureAwait(false);
 
@@ -25,7 +21,7 @@ namespace Keycloak.Net
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/permission")
             .AppendPathSegment(permissionType == AuthorizationPermissionType.Scope ? "/scope" : "/resource")
             .AppendPathSegment($"/{permissionId}")
-            .GetJsonAsync<AuthorizationPermission>(cancellationToken)
+            .GetJsonAsync<AuthorizationPermission>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<IEnumerable<AuthorizationPermission>> GetAuthorizationPermissionsAsync(string realm, string clientId, AuthorizationPermissionType? ofPermissionType = null,
@@ -48,7 +44,7 @@ namespace Keycloak.Net
 
             return await request
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<AuthorizationPermission>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<AuthorizationPermission>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -58,7 +54,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/permission")
                 .AppendPathSegment(permission.Type == AuthorizationPermissionType.Scope ? "/scope" : "/resource")
                 .AppendPathSegment($"/{permission.Id}")
-                .PutJsonAsync(permission, cancellationToken)
+                .PutJsonAsync(permission, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -70,7 +66,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/permission")
                 .AppendPathSegment(permissionType == AuthorizationPermissionType.Scope ? "/scope" : "/resource")
                 .AppendPathSegment($"/{permissionId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -79,7 +75,7 @@ namespace Keycloak.Net
         {
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy/{permissionId}/associatedPolicies")
-                .GetJsonAsync<IEnumerable<Policy>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Policy>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -87,7 +83,7 @@ namespace Keycloak.Net
         {
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy/{permissionId}/scopes")
-                .GetJsonAsync<IEnumerable<AuthorizationScope>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<AuthorizationScope>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -95,7 +91,7 @@ namespace Keycloak.Net
         {
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy/{permissionId}/resources")
-                .GetJsonAsync<IEnumerable<AuthorizationResource>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<AuthorizationResource>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
         #endregion 
@@ -106,7 +102,7 @@ namespace Keycloak.Net
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.Role ? "/role" : string.Empty)
-                .PostJsonAsync(policy, cancellationToken)
+                .PostJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<RolePolicy>()
                 .ConfigureAwait(false);
             return response;
@@ -117,7 +113,7 @@ namespace Keycloak.Net
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.User ? "/user" : string.Empty)
-                .PostJsonAsync(policy, cancellationToken)
+                .PostJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<UserPolicy>()
                 .ConfigureAwait(false);
             return response;
@@ -128,7 +124,7 @@ namespace Keycloak.Net
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.User ? "/group" : string.Empty)
-                .PostJsonAsync(policy, cancellationToken)
+                .PostJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<GroupPolicy>()
                 .ConfigureAwait(false);
             return response;
@@ -138,21 +134,21 @@ namespace Keycloak.Net
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
             .AppendPathSegment(policyType == PolicyType.Role ? "/role" : string.Empty)
             .AppendPathSegment($"/{rolePolicyId}")
-            .GetJsonAsync<RolePolicy>(cancellationToken)
+            .GetJsonAsync<RolePolicy>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
         
         public async Task<UserPolicy> GetUserPolicyByIdAsync(string realm, string clientId, PolicyType policyType, string userPolicyId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
             .AppendPathSegment(policyType == PolicyType.User ? "/user" : string.Empty)
             .AppendPathSegment($"/{userPolicyId}")
-            .GetJsonAsync<UserPolicy>(cancellationToken)
+            .GetJsonAsync<UserPolicy>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<GroupPolicy> GetGroupPolicyByIdAsync(string realm, string clientId, PolicyType policyType, string groupPolicyId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
             .AppendPathSegment(policyType == PolicyType.Group ? "/group" : string.Empty)
             .AppendPathSegment($"/{groupPolicyId}")
-            .GetJsonAsync<GroupPolicy>(cancellationToken)
+            .GetJsonAsync<GroupPolicy>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<IEnumerable<Policy>> GetAuthorizationPoliciesAsync(string realm, string clientId,
@@ -173,7 +169,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<Policy>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Policy>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -195,7 +191,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy/role")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<RolePolicy>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<RolePolicy>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -205,7 +201,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.Role ? "/role" : string.Empty)
                 .AppendPathSegment($"/{policy.Id}")
-                .PutJsonAsync(policy, cancellationToken)
+                .PutJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -216,7 +212,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.User ? "/user" : string.Empty)
                 .AppendPathSegment($"/{policy.Id}")
-                .PutJsonAsync(policy, cancellationToken)
+                .PutJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -227,7 +223,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policy.Type == PolicyType.Group ? "/group" : string.Empty)
                 .AppendPathSegment($"/{policy.Id}")
-                .PutJsonAsync(policy, cancellationToken)
+                .PutJsonAsync(policy, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -238,7 +234,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policyType == PolicyType.Role ? "/role" : string.Empty)
                 .AppendPathSegment($"/{rolePolicyId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -249,7 +245,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policyType == PolicyType.User ? "/user" : string.Empty)
                 .AppendPathSegment($"/{userPolicyId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -260,7 +256,7 @@ namespace Keycloak.Net
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/authz/resource-server/policy")
                 .AppendPathSegment(policyType == PolicyType.Group ? "/group" : string.Empty)
                 .AppendPathSegment($"/{groupPolicyId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }

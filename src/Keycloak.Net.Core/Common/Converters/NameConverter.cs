@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class NameConverter : JsonEnumConverter<Name>
     {
-        private static readonly Dictionary<Name, string> s_pairs = new Dictionary<Name, string>
+        private static readonly Dictionary<Name, string> s_pairs = new()
         {
             [Name.Base] = "base",
             [Name.Keycloak] = "keycloak",

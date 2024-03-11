@@ -1,8 +1,5 @@
 ﻿using Flurl;
-using Flurl.Http;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Flurl.Http.Newtonsoft;
 
 namespace Keycloak.Net.Common.Extensions
 {
@@ -10,16 +7,16 @@ namespace Keycloak.Net.Common.Extensions
     {
         private static async Task<string> GetAccessTokenAsync(string url, string realm, string userName, string password, KeycloakOptions options = null)
         {
-            options ??= new KeycloakOptions();
+            options ??= new();
             var result = await url
                 .AppendPathSegment($"{options.Prefix}/realms/{realm}/protocol/openid-connect/token")
                 .WithHeader("Accept", "application/json")
                 .PostUrlEncodedAsync(new List<KeyValuePair<string, string>>
                 {
-                    new KeyValuePair<string, string>("grant_type", "password"),
-                    new KeyValuePair<string, string>("username", userName),
-                    new KeyValuePair<string, string>("password", password),
-                    new KeyValuePair<string, string>("client_id", options.AdminClientId)
+                    new("grant_type", "password"),
+                    new("username", userName),
+                    new("password", password),
+                    new("client_id", options.AdminClientId)
                 })
                 .ReceiveJson().ConfigureAwait(false);
 
@@ -33,15 +30,15 @@ namespace Keycloak.Net.Common.Extensions
 
         private static async Task<string> GetAccessTokenAsync(string url, string realm, string clientSecret, KeycloakOptions options = null)
         {
-            options ??= new KeycloakOptions();
+            options ??= new();
             var result = await url
                 .AppendPathSegment($"{options.Prefix}/realms/{realm}/protocol/openid-connect/token")
                 .WithHeader("Content-Type", "application/x-www-form-urlencoded")
                 .PostUrlEncodedAsync(new List<KeyValuePair<string, string>>
                 {
-                    new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                    new KeyValuePair<string, string>("client_secret", clientSecret),
-                    new KeyValuePair<string, string>("client_id", options.AdminClientId)
+                    new("grant_type", "client_credentials"),
+                    new("client_secret", clientSecret),
+                    new("client_id", options.AdminClientId)
                 })
                 .ReceiveJson().ConfigureAwait(false);
 

@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class GroupNameConverter : JsonEnumConverter<GroupName>
     {
-        private static readonly Dictionary<GroupName, string> s_pairs = new Dictionary<GroupName, string>
+        private static readonly Dictionary<GroupName, string> s_pairs = new()
         {
             [GroupName.Social] = "social",
             [GroupName.UserDefined] = "userdefined"

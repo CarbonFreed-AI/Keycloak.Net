@@ -1,15 +1,10 @@
-﻿using Flurl.Http;
+﻿using Flurl.Http.Newtonsoft;
 using Keycloak.Net.Common.Extensions;
 using Keycloak.Net.Models.Clients;
 using Keycloak.Net.Models.ClientScopes;
 using Keycloak.Net.Models.Common;
 using Keycloak.Net.Models.Roles;
 using Keycloak.Net.Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Keycloak.Net
 {
@@ -35,7 +30,7 @@ namespace Keycloak.Net
         {
             return (await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients")
-                .PostJsonAsync(client, cancellationToken)
+                .PostJsonAsync(client, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false)).ResponseMessage;
         }
 
@@ -50,20 +45,20 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<Client>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Client>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         public async Task<Client> GetClientAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}")
-            .GetJsonAsync<Client>(cancellationToken)
+            .GetJsonAsync<Client>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<bool> UpdateClientAsync(string realm, string clientId, Client client, CancellationToken cancellationToken = default)
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}")
-                .PutJsonAsync(client, cancellationToken)
+                .PutJsonAsync(client, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -72,32 +67,32 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
 
         public async Task<Credentials> GenerateClientSecretAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/client-secret")
-            .PostJsonAsync(new StringContent(""), cancellationToken)
+            .PostJsonAsync(new StringContent(""), HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ReceiveJson<Credentials>()
             .ConfigureAwait(false);
 
         public async Task<Credentials> GetClientSecretAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/client-secret")
-            .GetJsonAsync<Credentials>(cancellationToken)
+            .GetJsonAsync<Credentials>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<IEnumerable<ClientScope>> GetDefaultClientScopesAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/default-client-scopes")
-            .GetJsonAsync<IEnumerable<ClientScope>>(cancellationToken)
+            .GetJsonAsync<IEnumerable<ClientScope>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<bool> UpdateDefaultClientScopeAsync(string realm, string clientId, string clientScopeId, CancellationToken cancellationToken = default)
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/default-client-scopes/{clientScopeId}")
-                .PutAsync(new StringContent(""), cancellationToken)
+                .PutAsync(new StringContent(""), HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -106,7 +101,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/default-client-scopes/{clientScopeId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -123,7 +118,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/evaluate-scopes/generate-example-access-token")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<AccessToken>(cancellationToken)
+                .GetJsonAsync<AccessToken>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -137,7 +132,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/evaluate-scopes/protocol-mappers")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<ClientScopeEvaluateResourceProtocolMapperEvaluation>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<ClientScopeEvaluateResourceProtocolMapperEvaluation>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -151,7 +146,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/evaluate-scopes/scope-mappings/{roleContainerId}/granted")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<Role>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Role>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -165,25 +160,25 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/evaluate-scopes/scope-mappings/{roleContainerId}/not-granted")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<Role>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<Role>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         [Obsolete("Not working yet")]
         public async Task<string> GetClientProviderAsync(string realm, string clientId, string providerId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/installation/providers/{providerId}")
-            .GetStringAsync(cancellationToken)
+            .GetStringAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<ManagementPermission> GetClientAuthorizationPermissionsInitializedAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/management/permissions")
-            .GetJsonAsync<ManagementPermission>(cancellationToken)
+            .GetJsonAsync<ManagementPermission>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<ManagementPermission> SetClientAuthorizationPermissionsInitializedAsync(string realm, string clientId, ManagementPermission managementPermission, CancellationToken cancellationToken = default) =>
             await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/management/permissions")
-                .PutJsonAsync(managementPermission, cancellationToken)
+                .PutJsonAsync(managementPermission, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ReceiveJson<ManagementPermission>()
                 .ConfigureAwait(false);
 
@@ -191,7 +186,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/nodes")
-                .PostJsonAsync(formParams, cancellationToken)
+                .PostJsonAsync(formParams, HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -200,7 +195,7 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/nodes")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -209,7 +204,7 @@ namespace Keycloak.Net
         {
             var result = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/offline-session-count")
-                .GetJsonAsync(cancellationToken)
+                .GetJsonAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
 
             return Convert.ToInt32(DynamicExtensions.GetFirstPropertyValue(result));
@@ -226,20 +221,20 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/offline-sessions")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<UserSession>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<UserSession>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<ClientScope>> GetOptionalClientScopesAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/optional-client-scopes")
-            .GetJsonAsync<IEnumerable<ClientScope>>(cancellationToken)
+            .GetJsonAsync<IEnumerable<ClientScope>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<bool> UpdateOptionalClientScopeAsync(string realm, string clientId, string clientScopeId, CancellationToken cancellationToken = default)
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/optional-client-scopes/{clientScopeId}")
-                .PutAsync(new StringContent(""), cancellationToken)
+                .PutAsync(new StringContent(""), HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
@@ -248,34 +243,34 @@ namespace Keycloak.Net
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/optional-client-scopes/{clientScopeId}")
-                .DeleteAsync(cancellationToken)
+                .DeleteAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }
 
         public async Task<GlobalRequestResult> PushClientRevocationPolicyAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/push-revocation")
-            .PostAsync(new StringContent(""), cancellationToken)
+            .PostAsync(new StringContent(""), HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ReceiveJson<GlobalRequestResult>()
             .ConfigureAwait(false);
 
         public async Task<Client> GenerateClientRegistrationAccessTokenAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/registration-access-token")
-            .PostJsonAsync(new StringContent(""), cancellationToken)
+            .PostJsonAsync(new StringContent(""), HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ReceiveJson<Client>()
             .ConfigureAwait(false);
 
         [Obsolete("Not working yet")]
         public async Task<User> GetUserForServiceAccountAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/service-account-user")
-            .GetJsonAsync<User>(cancellationToken)
+            .GetJsonAsync<User>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<int> GetClientSessionCountAsync(string realm, string clientId, CancellationToken cancellationToken = default)
         {
             var result = await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/session-count")
-                .GetJsonAsync(cancellationToken)
+                .GetJsonAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
 
             return Convert.ToInt32(DynamicExtensions.GetFirstPropertyValue(result));
@@ -283,7 +278,7 @@ namespace Keycloak.Net
 
         public async Task<GlobalRequestResult> TestClientClusterNodesAvailableAsync(string realm, string clientId, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/test-nodes-available")
-            .GetJsonAsync<GlobalRequestResult>(cancellationToken)
+            .GetJsonAsync<GlobalRequestResult>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<IEnumerable<UserSession>> GetClientUserSessionsAsync(string realm, string clientId, int? first = null, int? max = null, CancellationToken cancellationToken = default)
@@ -297,7 +292,7 @@ namespace Keycloak.Net
             return await GetBaseUrl(realm)
                 .AppendPathSegment($"/admin/realms/{realm}/clients/{clientId}/user-sessions")
                 .SetQueryParams(queryParams)
-                .GetJsonAsync<IEnumerable<UserSession>>(cancellationToken)
+                .GetJsonAsync<IEnumerable<UserSession>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -305,10 +300,10 @@ namespace Keycloak.Net
             .AppendPathSegment($"/realms/{realm}/protocol/openid-connect/token")
             .PostUrlEncodedAsync(new List<KeyValuePair<string, string>>
             {
-                new KeyValuePair<string, string>("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket"),
-                new KeyValuePair<string, string>("response_mode", "permissions"),
-                new KeyValuePair<string, string>("audience", clientId)
-            }, cancellationToken)
+                new("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket"),
+                new("response_mode", "permissions"),
+                new("audience", clientId)
+            }, HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ReceiveJson<IEnumerable<Resource>>()
             .ConfigureAwait(false);
     }

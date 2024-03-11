@@ -3,7 +3,6 @@ using Keycloak.Net.Models.Clients;
 using Keycloak.Net.Models.Groups;
 using Keycloak.Net.Models.Users;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Keycloak.Net.Models.RealmsAdmin
 {

@@ -1,6 +1,5 @@
 ﻿using Keycloak.Net.Models.Roles;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Keycloak.Net.Models.RealmsAdmin
 {

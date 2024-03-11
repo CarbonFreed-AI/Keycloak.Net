@@ -1,7 +1,4 @@
-﻿using Flurl.Http;
-using Keycloak.Net.Models.Root;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Keycloak.Net.Models.Root;
 
 namespace Keycloak.Net
 {
@@ -9,14 +6,14 @@ namespace Keycloak.Net
     {
         public async Task<ServerInfo> GetServerInfoAsync(string realm, CancellationToken cancellationToken = default) => await GetBaseUrl(realm)
             .AppendPathSegment("/admin/serverinfo/")
-            .GetJsonAsync<ServerInfo>(cancellationToken)
+            .GetJsonAsync<ServerInfo>(HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
 
         public async Task<bool> CorsPreflightAsync(string realm, CancellationToken cancellationToken = default)
         {
             var response = await GetBaseUrl(realm)
                 .AppendPathSegment("/admin/serverinfo/")
-                .OptionsAsync(cancellationToken)
+                .OptionsAsync(HttpCompletionOption.ResponseContentRead, cancellationToken)
                 .ConfigureAwait(false);
             return response.ResponseMessage.IsSuccessStatusCode;
         }

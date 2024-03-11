@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.AuthorizationPermissions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class PolicyDecisionLogicConverter : JsonEnumConverter<PolicyDecisionLogic>
     {
-        private static readonly Dictionary<PolicyDecisionLogic, string> SPairs = new Dictionary<PolicyDecisionLogic, string>
+        private static readonly Dictionary<PolicyDecisionLogic, string> SPairs = new()
         {
             [PolicyDecisionLogic.Positive] = "POSITIVE",
             [PolicyDecisionLogic.Negative] = "NEGATIVE"

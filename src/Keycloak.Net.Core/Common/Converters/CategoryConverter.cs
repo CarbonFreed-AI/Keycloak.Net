@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class CategoryConverter : JsonEnumConverter<Category>
     {
-        private static readonly Dictionary<Category, string> s_pairs = new Dictionary<Category, string>
+        private static readonly Dictionary<Category, string> s_pairs = new()
         {
             [Category.AttributeStatementMapper] = "attribute statement mapper",
             [Category.DockerAuthMapper] = "docker auth mapper",

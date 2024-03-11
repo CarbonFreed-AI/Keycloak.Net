@@ -1,13 +1,10 @@
 ﻿using Keycloak.Net.Models.Root;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Keycloak.Net.Common.Converters
 {
     public class ConfigTypeConverter : JsonEnumConverter<ConfigType>
     {
-        private static readonly Dictionary<ConfigType, string> s_pairs = new Dictionary<ConfigType, string>
+        private static readonly Dictionary<ConfigType, string> s_pairs = new()
         {
             [ConfigType.Int] = "int",
             [ConfigType.String] = "string"
