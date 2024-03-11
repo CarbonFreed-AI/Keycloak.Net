@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class JtaLookup
-    {
-        [JsonProperty("internal")]
-        public bool? Internal { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("providers")]
-        public JtaLookupProviders Providers { get; set; }
-    }
+public class JtaLookup
+{
+    [JsonProperty("internal")]
+    public bool? Internal { get; set; }
+
+    [JsonProperty("providers")]
+    public JtaLookupProviders Providers { get; set; }
 }

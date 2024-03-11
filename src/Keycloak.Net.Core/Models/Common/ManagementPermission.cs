@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Common
+namespace Keycloak.Net.Models.Common;
+
+public class ManagementPermission
 {
-    public class ManagementPermission
-    {
-        [JsonProperty("enabled")]
-        public bool? Enabled { get; set; }
-    }
+    [JsonProperty("enabled")]
+    public bool? Enabled { get; set; }
 }

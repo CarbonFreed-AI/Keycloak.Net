@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class HasDefault
 {
-    public class HasDefault
-    {
-        [JsonProperty("default")]
-        public HasOrder Default { get; set; }
-    }
+    [JsonProperty("default")]
+    public HasOrder Default { get; set; }
 }

@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class LoginProtocolProviders
-    {
-        [JsonProperty("saml")]
-        public HasOrder Saml { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("openid-connect")]
-        public HasOrder OpenIdConnect { get; set; }
-    }
+public class LoginProtocolProviders
+{
+    [JsonProperty("saml")]
+    public HasOrder Saml { get; set; }
+
+    [JsonProperty("openid-connect")]
+    public HasOrder OpenIdConnect { get; set; }
 }

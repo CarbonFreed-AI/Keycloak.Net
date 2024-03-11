@@ -1,13 +1,12 @@
 ﻿using Keycloak.Net.Models.Roles;
 using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Common
+namespace Keycloak.Net.Models.Common;
+
+public class Mapping
 {
-    public class Mapping
-    {
-        [JsonProperty("clientMappings")]
-        public IDictionary<string, ClientRoleMapping> ClientMappings { get; set; }
-        [JsonProperty("realmMappings")]
-        public IEnumerable<Role> RealmMappings { get; set; }
-    }
+    [JsonProperty("clientMappings")]
+    public IDictionary<string, ClientRoleMapping> ClientMappings { get; set; }
+    [JsonProperty("realmMappings")]
+    public IEnumerable<Role> RealmMappings { get; set; }
 }

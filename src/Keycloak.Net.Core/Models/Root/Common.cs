@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class Common
 {
-    public class Common
-    {
-        [JsonProperty("name")]
-        public Name Name { get; set; }
-    }
+    [JsonProperty("name")]
+    public Name Name { get; set; }
 }

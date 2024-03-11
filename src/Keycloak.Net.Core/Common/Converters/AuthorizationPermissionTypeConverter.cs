@@ -1,27 +1,26 @@
 ﻿using Keycloak.Net.Models.AuthorizationPermissions;
 
-namespace Keycloak.Net.Common.Converters
+namespace Keycloak.Net.Common.Converters;
+
+public class AuthorizationPermissionTypeConverter : JsonEnumConverter<AuthorizationPermissionType>
 {
-    public class AuthorizationPermissionTypeConverter : JsonEnumConverter<AuthorizationPermissionType>
+    private static readonly Dictionary<AuthorizationPermissionType, string> SPairs = new()
     {
-        private static readonly Dictionary<AuthorizationPermissionType, string> SPairs = new()
+        [AuthorizationPermissionType.Scope] = "scope",
+        [AuthorizationPermissionType.Resource] = "resource"
+    };
+
+    protected override string EntityString { get; } = "type";
+
+    protected override string ConvertToString(AuthorizationPermissionType value) => SPairs[value];
+
+    protected override AuthorizationPermissionType ConvertFromString(string s)
+    {
+        if (SPairs.Values.Contains(s.ToLower()))
         {
-            [AuthorizationPermissionType.Scope] = "scope",
-            [AuthorizationPermissionType.Resource] = "resource"
-        };
-
-        protected override string EntityString { get; } = "type";
-
-        protected override string ConvertToString(AuthorizationPermissionType value) => SPairs[value];
-
-        protected override AuthorizationPermissionType ConvertFromString(string s)
-        {
-            if (SPairs.Values.Contains(s.ToLower()))
-            {
-                return SPairs.First(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase)).Key;
-            }
-
-            throw new ArgumentException($"Unknown {EntityString}: {s}");
+            return SPairs.First(kvp => kvp.Value.Equals(s, StringComparison.OrdinalIgnoreCase)).Key;
         }
+
+        throw new ArgumentException($"Unknown {EntityString}: {s}");
     }
 }

@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Clients
+namespace Keycloak.Net.Models.Clients;
+
+public class Permission : Resource
 {
-    public class Permission : Resource
-    {
-        [JsonProperty("claims")]
-        public IDictionary<string, object> Claims { get; set; }
-    }
+    [JsonProperty("claims")]
+    public IDictionary<string, object> Claims { get; set; }
 }

@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Common
+namespace Keycloak.Net.Models.Common;
+
+public class GlobalRequestResult
 {
-    public class GlobalRequestResult
-    {
-        [JsonProperty("failedRequests")]
-        public IEnumerable<string> FailedRequests { get; set; }
-        [JsonProperty("successRequests")]
-        public IEnumerable<string> SuccessRequests { get; set; }
-    }
+    [JsonProperty("failedRequests")]
+    public IEnumerable<string> FailedRequests { get; set; }
+    [JsonProperty("successRequests")]
+    public IEnumerable<string> SuccessRequests { get; set; }
 }

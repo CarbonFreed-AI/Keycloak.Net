@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class ConnectionsJpaProviders
 {
-    public class ConnectionsJpaProviders
-    {
-        [JsonProperty("default")]
-        public Default Default { get; set; }
-    }
+    [JsonProperty("default")]
+    public Default Default { get; set; }
 }

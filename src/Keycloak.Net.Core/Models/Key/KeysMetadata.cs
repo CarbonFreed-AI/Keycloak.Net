@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Key
+namespace Keycloak.Net.Models.Key;
+
+public class KeysMetadata
 {
-    public class KeysMetadata
-    {
-        [JsonProperty("active")]
-        public Active Active { get; set; }
-        [JsonProperty("keys")]
-        public IEnumerable<Key> Keys { get; set; }
-    }
+    [JsonProperty("active")]
+    public Active Active { get; set; }
+    [JsonProperty("keys")]
+    public IEnumerable<Key> Keys { get; set; }
 }

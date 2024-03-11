@@ -1,12 +1,11 @@
 using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Roles
+namespace Keycloak.Net.Models.Roles;
+
+public class RoleComposite
 {
-    public class RoleComposite
-    {
-        [JsonProperty("client")]
-        public IDictionary<string, string> Client { get; set; }
-        [JsonProperty("realm")]
-        public IEnumerable<string> Realm { get; set; }
-    }
+    [JsonProperty("client")]
+    public IDictionary<string, string> Client { get; set; }
+    [JsonProperty("realm")]
+    public IEnumerable<string> Realm { get; set; }
 }

@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class TruststoreProviders
 {
-    public class TruststoreProviders
-    {
-        [JsonProperty("file")]
-        public HasOrder File { get; set; }
-    }
+    [JsonProperty("file")]
+    public HasOrder File { get; set; }
 }

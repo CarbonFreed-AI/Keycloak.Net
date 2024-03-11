@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class EventsListener
-    {
-        [JsonProperty("internal")]
-        public bool? Internal { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("providers")]
-        public EventsListenerProviders Providers { get; set; }
-    }
+public class EventsListener
+{
+    [JsonProperty("internal")]
+    public bool? Internal { get; set; }
+
+    [JsonProperty("providers")]
+    public EventsListenerProviders Providers { get; set; }
 }

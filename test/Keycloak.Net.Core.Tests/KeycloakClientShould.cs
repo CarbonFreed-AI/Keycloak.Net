@@ -1,24 +1,23 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Keycloak.Net.Tests
+namespace Keycloak.Net.Tests;
+
+public partial class KeycloakClientShould
 {
-    public partial class KeycloakClientShould
+    private readonly KeycloakClient _client;
+
+    public KeycloakClientShould()
     {
-        private readonly KeycloakClient _client;
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .Build();
 
-        public KeycloakClientShould()
-        {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .Build();
+        string url = configuration["url"];
+        string userName = configuration["username"];
+        string password = configuration["password"];
 
-            string url = configuration["url"];
-            string userName = configuration["username"];
-            string password = configuration["password"];
-
-            _client = new(url, userName, password);
-        }
+        _client = new(url, userName, password);
     }
 }

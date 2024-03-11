@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class Account
-    {
-        [JsonProperty("name")]
-        public Name Name { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("locales")]
-        public List<Locale> Locales { get; set; }
-    }
+public class Account
+{
+    [JsonProperty("name")]
+    public Name Name { get; set; }
+
+    [JsonProperty("locales")]
+    public List<Locale> Locales { get; set; }
 }

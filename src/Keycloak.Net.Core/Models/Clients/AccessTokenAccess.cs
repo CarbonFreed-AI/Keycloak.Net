@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Clients
+namespace Keycloak.Net.Models.Clients;
+
+public class AccessTokenAccess
 {
-    public class AccessTokenAccess
-    {
-        [JsonProperty("roles")]
-        public IEnumerable<string> Roles { get; set; }
-        [JsonProperty("verify_caller")]
-        public bool? VerifyCaller { get; set; }
-    }
+    [JsonProperty("roles")]
+    public IEnumerable<string> Roles { get; set; }
+    [JsonProperty("verify_caller")]
+    public bool? VerifyCaller { get; set; }
 }

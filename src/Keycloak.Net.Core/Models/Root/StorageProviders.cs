@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class StorageProviders
-    {
-        [JsonProperty("ldap")]
-        public HasOrder Ldap { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("kerberos")]
-        public HasOrder Kerberos { get; set; }
-    }
+public class StorageProviders
+{
+    [JsonProperty("ldap")]
+    public HasOrder Ldap { get; set; }
+
+    [JsonProperty("kerberos")]
+    public HasOrder Kerberos { get; set; }
 }

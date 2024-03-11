@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class TimerProviders
 {
-    public class TimerProviders
-    {
-        [JsonProperty("basic")]
-        public HasOrder Basic { get; set; }
-    }
+    [JsonProperty("basic")]
+    public HasOrder Basic { get; set; }
 }

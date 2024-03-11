@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
-{
-    public class Oauth2TokenIntrospection
-    {
-        [JsonProperty("internal")]
-        public bool? Internal { get; set; }
+namespace Keycloak.Net.Models.Root;
 
-        [JsonProperty("providers")]
-        public Oauth2TokenIntrospectionProviders Providers { get; set; }
-    }
+public class Oauth2TokenIntrospection
+{
+    [JsonProperty("internal")]
+    public bool? Internal { get; set; }
+
+    [JsonProperty("providers")]
+    public Oauth2TokenIntrospectionProviders Providers { get; set; }
 }

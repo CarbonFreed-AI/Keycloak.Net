@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class AuthorizationPersisterProviders
 {
-    public class AuthorizationPersisterProviders
-    {
-        [JsonProperty("jpa")]
-        public HasOrder Jpa { get; set; }
-    }
+    [JsonProperty("jpa")]
+    public HasOrder Jpa { get; set; }
 }

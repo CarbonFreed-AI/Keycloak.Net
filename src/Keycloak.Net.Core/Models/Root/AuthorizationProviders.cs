@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Keycloak.Net.Models.Root
+namespace Keycloak.Net.Models.Root;
+
+public class AuthorizationProviders
 {
-    public class AuthorizationProviders
-    {
-        [JsonProperty("authorization")]
-        public HasOrder Authorization { get; set; }
-    }
+    [JsonProperty("authorization")]
+    public HasOrder Authorization { get; set; }
 }
