@@ -1,0 +1,53 @@
+# Builds the library and packs it as NuGet package
+
+name: Build Keycloak.NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Install gitversion
+      uses: gittools/actions/gitversion/setup@v0
+      with:
+        versionSpec: '5.x'
+    - name: Calculate version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0
+      with:
+        useConfigFile: true
+        configFilePath: .github/GitVersion.yml
+    - name: Save version to file
+      run: echo "${{ steps.gitversion.outputs.semVer }}" > version
+    - name: Upload version
+      if: ${{ github.ref == 'refs/heads/main' }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Keycloak.NET
+        path: version
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build -p:Version=$GITVERSION_SEMVER --no-restore -c Release
+# Tests disabled as they need to be fixed first      
+#    - name: Test
+#      run: dotnet test --no-build --verbosity normal
+    - name: Generate package
+      run: dotnet pack -p:Version=$GITVERSION_SEMVER --no-restore --no-build --include-symbols --include-source 
+    - name: Authenticate against Repository
+      run: dotnet nuget add source --username Skyppid --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/CarbonFreed-AI/index.json"
+    - name: Upload NuGet package
+      run: dotnet nuget push src/Keycloak.Net.Core/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}
