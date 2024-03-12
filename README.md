@@ -2,6 +2,8 @@
 # Keycloak.Net.Core
 [![license](https://img.shields.io/github/license/AnderssonPeter/Keycloak.Net.svg?maxAge=2592000)](https://github.com/AnderssonPeter/Keycloak.Net/blob/master/LICENSE) [![NuGet](https://img.shields.io/nuget/v/Keycloak.Net.Core?maxAge=2592000)](https://www.nuget.org/packages/Keycloak.Net.Core/) [![downloads](https://img.shields.io/nuget/dt/Keycloak.Net.Core)](https://www.nuget.org/packages/Keycloak.Net.Core/)
 
+[![Build Keycloak.NET](https://github.com/CarbonFreed-AI/Keycloak.Net/actions/workflows/build-library.yml/badge.svg)](https://github.com/CarbonFreed-AI/Keycloak.Net/actions/workflows/build-library.yml)
+
  A Fork of https://github.com/lvermeulen/Keycloak.Net with some additional patches
  * allow usage of CancellationTokens
  * changed ClientConfig to Dictionary<string, string>
