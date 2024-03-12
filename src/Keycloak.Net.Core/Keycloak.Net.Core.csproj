@@ -24,6 +24,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Flurl.Http.Newtonsoft" Version="0.9.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 	</ItemGroup>
 

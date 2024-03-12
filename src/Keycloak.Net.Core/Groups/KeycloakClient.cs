@@ -62,6 +62,23 @@ public partial class KeycloakClient
         return result;
     }
 
+    public async Task<IEnumerable<Group>> GetSubgroupsAsync(string realm, string groupId, bool briefRepresentation = false, int? first = null, int? max = null,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await GetBaseUrl(realm)
+            .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/children")
+            .SetQueryParams(new Dictionary<string, object>()
+            {
+                { nameof(briefRepresentation), briefRepresentation },
+                { nameof(max), max },
+                { nameof(first), first }
+            })
+            .GetJsonAsync<IEnumerable<Group>>(HttpCompletionOption.ResponseContentRead, cancellationToken)
+            .ConfigureAwait(false);
+
+        return result;
+    }
+
     public async Task<bool> UpdateGroupAsync(string realm, string groupId, Group group, CancellationToken cancellationToken = default)
     {
         var response = await GetBaseUrl(realm)
