@@ -48,8 +48,8 @@ jobs:
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
     - name: Authenticate against Repository
-      run: dotnet nuget add source --username Skyppid --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/CarbonFreed-AI/index.json"
+      run: dotnet nuget add source --username Skyppid --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name GitHub "https://nuget.pkg.github.com/CarbonFreed-AI/index.json"
     - name: Generate package
-      run: dotnet pack src/Keycloak.Net.Core/Keycloak.Net.Core.csproj -p:PackageVersion="${{ steps.gitversion.outputs.semVer }}" --source "github" --no-restore --no-build --include-symbols --include-source 
+      run: dotnet pack src/Keycloak.Net.Core/Keycloak.Net.Core.csproj -p:PackageVersion="${{ steps.gitversion.outputs.semVer }}" --source "GitHub" --no-restore --no-build --include-symbols --include-source 
     - name: Upload NuGet package
-      run: dotnet nuget push src/Keycloak.Net.Core/bin/Release/*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+      run: dotnet nuget push src/Keycloak.Net.Core/bin/Release/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "GitHub"
