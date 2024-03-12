@@ -4,7 +4,7 @@ name: Build Keycloak.NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feature/major-upgrade" ]
   pull_request:
     branches: [ "main" ]
 
@@ -41,7 +41,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build -p:Version=$GITVERSION_SEMVER --no-restore -c Release
+      run: dotnet build -p:Version=${{ steps.gitversion.outputs.informationalVersion }} -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} --no-restore -c Release
 # Tests disabled as they need to be fixed first      
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal

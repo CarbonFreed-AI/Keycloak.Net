@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<ProductName>Keycloak.NET</ProductName>
 		<Authors>Manuel Eisenschink, CarbonFreed GmbH / prior: Luk Vermeulen, Peter Andersson, Galip Tolga Erdem, Silent Partner Software</Authors>
 		<Copyright>Copyright 2024 (c) CarbonFreed GmbH</Copyright>
 		<PackageProjectUrl>https://github.com/CarbonFreed-AI/Keycloak.Net</PackageProjectUrl>
@@ -18,7 +19,6 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Version>23.0.0</Version>
 		<ImplicitUsings>True</ImplicitUsings>
 	</PropertyGroup>
 
