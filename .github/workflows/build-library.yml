@@ -52,4 +52,4 @@ jobs:
     - name: Generate package
       run: dotnet pack src/Keycloak.Net.Core/Keycloak.Net.Core.csproj -p:PackageVersion="${{ steps.gitversion.outputs.semVer }}" --source "github" --no-restore --no-build --include-symbols --include-source 
     - name: Upload NuGet package
-      run: dotnet nuget push src/Keycloak.Net.Core/*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+      run: dotnet nuget push src/Keycloak.Net.Core/bin/Release/*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
