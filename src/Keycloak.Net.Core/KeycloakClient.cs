@@ -1,7 +1,5 @@
 ﻿using System.Text;
-using Flurl;
 using Flurl.Http.Configuration;
-using Flurl.Http.Newtonsoft;
 using Keycloak.Net.Common.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -81,6 +79,7 @@ public partial class KeycloakClient
             request.AfterCall(c =>
             {
                 using var mem = new MemoryStream();
+                
                 c.HttpResponseMessage.Content.CopyTo(mem, null, CancellationToken.None);
                 mem.Seek(0, SeekOrigin.Begin);
 

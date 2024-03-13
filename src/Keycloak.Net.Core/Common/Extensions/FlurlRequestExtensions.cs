@@ -1,7 +1,4 @@
-﻿using Flurl;
-using Flurl.Http.Newtonsoft;
-
-namespace Keycloak.Net.Common.Extensions;
+﻿namespace Keycloak.Net.Common.Extensions;
 
 public static class FlurlRequestExtensions
 {

@@ -8,7 +8,7 @@
  * allow usage of CancellationTokens
  * changed ClientConfig to Dictionary<string, string>
  * removed signing
- * .net 8 upgraded
+ * .NET 8 LTS Support
  * updated for keycloak version 23+
  * added support for changing default `AdminClientId` which has default `admin-cli` value
 
@@ -22,6 +22,11 @@
     )
 );
  ```
+
+ The `KeycloakOptions` now also supports logging of request and response bodies. To enable logging, use:
+  ```cs
+  var options = new KeycloakOptions() { EnableRequestLogging = true, EnableResponseLogging = true, Logger = logger });
+  ```
 
  ## Older version support for using /auth path
  When creating a new KeycloakClient, use newly introduced KeycloakOptions:

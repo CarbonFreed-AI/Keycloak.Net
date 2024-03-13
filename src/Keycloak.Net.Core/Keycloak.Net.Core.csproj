@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<ProductName>Keycloak.NET</ProductName>
-		<Authors>Manuel Eisenschink, CarbonFreed GmbH / prior: Luk Vermeulen, Peter Andersson, Galip Tolga Erdem, Silent Partner Software</Authors>
-		<Copyright>Copyright 2024 (c) CarbonFreed GmbH</Copyright>
-		<PackageProjectUrl>https://github.com/CarbonFreed-AI/Keycloak.Net</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/CarbonFreed-AI/Keycloak.Net</RepositoryUrl>
+		<Authors>Luk Vermeulen, Peter Andersson, Galip Tolga Erdem, Silent Partner Software</Authors>
+		<Copyright>Copyright 2023 by Luk Vermeulen, Peter Andersson, Silent Partner Software. All rights reserved.</Copyright>
+		<PackageProjectUrl>https://github.com/silentpartnersoftware/Keycloak.Net</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/silentpartnersoftware/Keycloak.Net</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>keycloak</PackageTags>

@@ -1,4 +1,3 @@
-using Flurl.Http.Newtonsoft;
 using Keycloak.Net.Common.Extensions;
 using Keycloak.Net.Models.Groups;
 using Keycloak.Net.Models.Users;

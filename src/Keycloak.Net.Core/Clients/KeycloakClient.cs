@@ -1,5 +1,4 @@
-﻿using Flurl.Http.Newtonsoft;
-using Keycloak.Net.Common.Extensions;
+﻿using Keycloak.Net.Common.Extensions;
 using Keycloak.Net.Models.Clients;
 using Keycloak.Net.Models.ClientScopes;
 using Keycloak.Net.Models.Common;
