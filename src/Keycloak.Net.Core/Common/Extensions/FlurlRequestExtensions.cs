@@ -2,7 +2,7 @@
 
 public static class FlurlRequestExtensions
 {
-    private static async Task<string> GetAccessTokenAsync(string url, string realm, string userName, string password, KeycloakOptions options = null)
+    private static async Task<string> GetAccessTokenAsync(string url, string realm, string userName, string password, KeycloakOptions? options = null)
     {
         options ??= new();
         var result = await url
@@ -22,9 +22,9 @@ public static class FlurlRequestExtensions
         return accessToken;
     }
 
-    private static string GetAccessToken(string url, string realm, string userName, string password, KeycloakOptions options = null) => GetAccessTokenAsync(url, realm, userName, password, options).GetAwaiter().GetResult();
+    private static string GetAccessToken(string url, string realm, string userName, string password, KeycloakOptions? options = null) => GetAccessTokenAsync(url, realm, userName, password, options).GetAwaiter().GetResult();
 
-    private static async Task<string> GetAccessTokenAsync(string url, string realm, string clientSecret, KeycloakOptions options = null)
+    private static async Task<string> GetAccessTokenAsync(string url, string realm, string clientSecret, KeycloakOptions? options = null)
     {
         options ??= new();
         var result = await url
@@ -38,28 +38,28 @@ public static class FlurlRequestExtensions
             })
             .ReceiveJson().ConfigureAwait(false);
 
-        string accessToken = result
-            .access_token.ToString();
+        string accessToken = result.access_token.ToString();
 
         return accessToken;
     }
 
-    private static string GetAccessToken(string url, string realm, string clientSecret, KeycloakOptions options = null) => GetAccessTokenAsync(url, realm, clientSecret, options).GetAwaiter().GetResult();
+    private static string GetAccessToken(string url, string realm, string clientSecret, KeycloakOptions? options = null) => GetAccessTokenAsync(url, realm, clientSecret, options).GetAwaiter().GetResult();
 
-    public static IFlurlRequest WithAuthentication(this IFlurlRequest request, Func<string> getToken, string url, string realm, string userName, string password, string clientSecret, KeycloakOptions options = null)
+    public static IFlurlRequest WithAuthentication(this IFlurlRequest request, Func<string>? getToken, string url, string realm, string? userName, string? password, string? clientSecret, KeycloakOptions? options = null)
     {
-        string token = null;
+        string token;
 
         if (getToken != null)
-        {
             token = getToken();
-        }
         else if (clientSecret != null)
-        {
             token = GetAccessToken(url, realm, clientSecret, options);
-        }
         else
         {
+            if (string.IsNullOrWhiteSpace(userName))
+                throw new ArgumentNullException(nameof(userName));
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentNullException(nameof(password));
+            
             token = GetAccessToken(url, realm, userName, password, options);
         }
 

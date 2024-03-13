@@ -26,10 +26,10 @@ public partial class KeycloakClient
         return userId;
     }
 
-    public async Task<IEnumerable<User>> GetUsersAsync(string realm, bool? briefRepresentation = null, string email = null, bool? emailVerified = null, bool? enabled = null, bool? exact = null, int? first = null,
-        string firstName = null, string idpAlias = null, string idpUserId = null, string lastName = null, int? max = null, string q = null, string search = null, string username = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<User>> GetUsersAsync(string realm, bool? briefRepresentation = null, string? email = null, bool? emailVerified = null, bool? enabled = null, bool? exact = null, int? first = null,
+        string? firstName = null, string? idpAlias = null, string? idpUserId = null, string? lastName = null, int? max = null, string? q = null, string? search = null, string? username = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(briefRepresentation)] = briefRepresentation,
             [nameof(email)] = email,
@@ -117,9 +117,9 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<bool> SendUserUpdateAccountEmailAsync(string realm, string userId, IEnumerable<string> requiredActions, string clientId = null, int? lifespan = null, string redirectUri = null, CancellationToken cancellationToken = default)
+    public async Task<bool> SendUserUpdateAccountEmailAsync(string realm, string userId, IEnumerable<string> requiredActions, string? clientId = null, int? lifespan = null, string? redirectUri = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             ["client_id"] = clientId,
             [nameof(lifespan)] = lifespan,
@@ -258,9 +258,9 @@ public partial class KeycloakClient
         return JsonConvert.DeserializeObject<SetPasswordResponse>(jsonString);
     }
 
-    public async Task<bool> VerifyUserEmailAddressAsync(string realm, string userId, string clientId = null, string redirectUri = null, CancellationToken cancellationToken = default)
+    public async Task<bool> VerifyUserEmailAddressAsync(string realm, string userId, string? clientId = null, string? redirectUri = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>();
+        var queryParams = new Dictionary<string, object?>();
         if (!string.IsNullOrEmpty(clientId))
         {
             queryParams.Add("client_id", clientId);

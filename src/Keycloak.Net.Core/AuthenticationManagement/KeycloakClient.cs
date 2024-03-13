@@ -111,7 +111,7 @@ public partial class KeycloakClient
     {
         var response = await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/authentication/flows/{flowAlias}/copy")
-            .PostJsonAsync(new Dictionary<string, object> { [nameof(newName)] = newName }, HttpCompletionOption.ResponseContentRead, cancellationToken)
+            .PostJsonAsync(new Dictionary<string, object?> { [nameof(newName)] = newName }, HttpCompletionOption.ResponseContentRead, cancellationToken)
             .ConfigureAwait(false);
         return response.ResponseMessage.IsSuccessStatusCode;
     }

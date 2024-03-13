@@ -13,10 +13,10 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<AuthorizationScope>> GetAuthorizationScopesAsync(string realm, string resourceServerId = null,
-        bool deep = false, int? first = null, int? max = null, string name = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<AuthorizationScope>> GetAuthorizationScopesAsync(string realm, string? resourceServerId = null,
+        bool deep = false, int? first = null, int? max = null, string? name = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(deep)] = deep,
             [nameof(first)] = first,

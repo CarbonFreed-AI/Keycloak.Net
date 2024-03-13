@@ -16,12 +16,12 @@ public partial class KeycloakClient
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<string> CreateClientAndRetrieveClientIdAsync(string realm, Client client, CancellationToken cancellationToken = default)
+    public async Task<string?> CreateClientAndRetrieveClientIdAsync(string realm, Client client, CancellationToken cancellationToken = default)
     {
         HttpResponseMessage response = await InternalCreateClientAsync(realm, client, cancellationToken).ConfigureAwait(false);
 
-        var locationPathAndQuery = response.Headers.Location.PathAndQuery;
-        var clientId = response.IsSuccessStatusCode ? locationPathAndQuery.Substring(locationPathAndQuery.LastIndexOf("/", StringComparison.Ordinal) + 1) : null;
+        var locationPathAndQuery = response.Headers.Location?.PathAndQuery;
+        var clientId = response.IsSuccessStatusCode ? locationPathAndQuery?.Substring(locationPathAndQuery.LastIndexOf('/') + 1) : null;
         return clientId;
     }
 
@@ -33,9 +33,9 @@ public partial class KeycloakClient
             .ConfigureAwait(false)).ResponseMessage;
     }
 
-    public async Task<IEnumerable<Client>> GetClientsAsync(string realm, string clientId = null, bool? viewableOnly = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Client>> GetClientsAsync(string realm, string? clientId = null, bool? viewableOnly = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(clientId)] = clientId,
             [nameof(viewableOnly)] = viewableOnly
@@ -106,9 +106,9 @@ public partial class KeycloakClient
     }
 
     [Obsolete("Not working yet")]
-    public async Task<AccessToken> GenerateClientExampleAccessTokenAsync(string realm, string clientId, string scope = null, string userId = null, CancellationToken cancellationToken = default)
+    public async Task<AccessToken> GenerateClientExampleAccessTokenAsync(string realm, string clientId, string? scope = null, string? userId = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(scope)] = scope,
             [nameof(userId)] = userId
@@ -121,9 +121,9 @@ public partial class KeycloakClient
             .ConfigureAwait(false);
     }
 
-    public async Task<IEnumerable<ClientScopeEvaluateResourceProtocolMapperEvaluation>> GetProtocolMappersInTokenGenerationAsync(string realm, string clientId, string scope = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<ClientScopeEvaluateResourceProtocolMapperEvaluation>> GetProtocolMappersInTokenGenerationAsync(string realm, string clientId, string? scope = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(scope)] = scope
         };
@@ -135,9 +135,9 @@ public partial class KeycloakClient
             .ConfigureAwait(false);
     }
 
-    public async Task<IEnumerable<Role>> GetClientGrantedScopeMappingsAsync(string realm, string clientId, string roleContainerId, string scope = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Role>> GetClientGrantedScopeMappingsAsync(string realm, string clientId, string roleContainerId, string? scope = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(scope)] = scope
         };
@@ -149,9 +149,9 @@ public partial class KeycloakClient
             .ConfigureAwait(false);
     }
 
-    public async Task<IEnumerable<Role>> GetClientNotGrantedScopeMappingsAsync(string realm, string clientId, string roleContainerId, string scope = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Role>> GetClientNotGrantedScopeMappingsAsync(string realm, string clientId, string roleContainerId, string? scope = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(scope)] = scope
         };
@@ -211,7 +211,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<UserSession>> GetClientOfflineSessionsAsync(string realm, string clientId, int? first = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max
@@ -282,7 +282,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<UserSession>> GetClientUserSessionsAsync(string realm, string clientId, int? first = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max

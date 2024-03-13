@@ -13,9 +13,9 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<Component>> GetComponentsAsync(string realm, string name = null, string parent = null, string type = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Component>> GetComponentsAsync(string realm, string? name = null, string? parent = null, string? type = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(name)] = name,
             [nameof(parent)] = parent,
@@ -55,9 +55,9 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<ComponentType>> GetSubcomponentTypesAsync(string realm, string componentId, string type = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<ComponentType>> GetSubcomponentTypesAsync(string realm, string componentId, string? type = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(type)] = type
         };

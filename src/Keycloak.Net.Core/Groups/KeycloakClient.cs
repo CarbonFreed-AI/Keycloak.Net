@@ -16,10 +16,10 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<Group>> GetGroupHierarchyAsync(string realm, int? first = null, int? max = null, string search = null,
+    public async Task<IEnumerable<Group>> GetGroupHierarchyAsync(string realm, int? first = null, int? max = null, string? search = null,
         CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,
@@ -34,9 +34,9 @@ public partial class KeycloakClient
             .ConfigureAwait(false);
     }
 
-    public async Task<int> GetGroupsCountAsync(string realm, string search = null, bool? top = null, CancellationToken cancellationToken = default)
+    public async Task<int> GetGroupsCountAsync(string realm, string? search = null, bool? top = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(search)] = search,
             [nameof(top)] = top
@@ -66,7 +66,7 @@ public partial class KeycloakClient
     {
         var result = await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/groups/{groupId}/children")
-            .SetQueryParams(new Dictionary<string, object>()
+            .SetQueryParams(new Dictionary<string, object?>()
             {
                 { nameof(briefRepresentation), briefRepresentation },
                 { nameof(max), max },
@@ -121,7 +121,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<User>> GetGroupUsersAsync(string realm, string groupId, int? first = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max

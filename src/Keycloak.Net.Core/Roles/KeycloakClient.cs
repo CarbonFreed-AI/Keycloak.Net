@@ -16,9 +16,9 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<Role>> GetRolesAsync(string realm, string clientId, int? first = null, int? max = null, string search = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Role>> GetRolesAsync(string realm, string clientId, int? first = null, int? max = null, string? search = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,
@@ -91,7 +91,7 @@ public partial class KeycloakClient
     [Obsolete("Not working yet")]
     public async Task<IEnumerable<Group>> GetGroupsWithRoleNameAsync(string realm, string clientId, string roleName, int? first = null, bool? full = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(full)] = full,
@@ -118,7 +118,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<User>> GetUsersWithRoleNameAsync(string realm, string clientId, string roleName, int? first = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max
@@ -140,9 +140,9 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<Role>> GetRolesAsync(string realm, int? first = null, int? max = null, string search = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Role>> GetRolesAsync(string realm, int? first = null, int? max = null, string? search = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,
@@ -215,7 +215,7 @@ public partial class KeycloakClient
     [Obsolete("Not working yet")]
     public async Task<IEnumerable<Group>> GetGroupsWithRoleNameAsync(string realm, string roleName, int? first = null, bool? full = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(full)] = full,
@@ -242,7 +242,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<User>> GetUsersWithRoleNameAsync(string realm, string roleName, int? first = null, int? max = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max

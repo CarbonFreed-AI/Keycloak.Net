@@ -45,11 +45,11 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<AdminEvent>> GetAdminEventsAsync(string realm, string authClient = null, string authIpAddress = null, string authRealm = null, string authUser = null,
-        string dateFrom = null, string dateTo = null, int? first = null, int? max = null,
-        IEnumerable<string> operationTypes = null, string resourcePath = null, IEnumerable<string> resourceTypes = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<AdminEvent>> GetAdminEventsAsync(string realm, string? authClient = null, string? authIpAddress = null, string? authRealm = null, string? authUser = null,
+        string? dateFrom = null, string? dateTo = null, int? first = null, int? max = null,
+        IEnumerable<string> operationTypes = null, string? resourcePath = null, IEnumerable<string> resourceTypes = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(authClient)] = authClient,
             [nameof(authIpAddress)] = authIpAddress,
@@ -187,10 +187,10 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<IEnumerable<Event>> GetEventsAsync(string realm, string client = null, string dateFrom = null, string dateTo = null, int? first = null,
-        string ipAddress = null, int? max = null, string type = null, string user = null, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Event>> GetEventsAsync(string realm, string? client = null, string? dateFrom = null, string? dateTo = null, int? first = null,
+        string? ipAddress = null, int? max = null, string? type = null, string? user = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(client)] = client,
             [nameof(dateFrom)] = dateFrom,
@@ -245,7 +245,7 @@ public partial class KeycloakClient
 
     public async Task<Realm> RealmPartialExportAsync(string realm, bool? exportClients = null, bool? exportGroupsAndRoles = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(exportClients)] = exportClients,
             [nameof(exportGroupsAndRoles)] = exportGroupsAndRoles,
@@ -283,8 +283,8 @@ public partial class KeycloakClient
         return response.ResponseMessage.IsSuccessStatusCode;
     }
 
-    public async Task<bool> TestLdapConnectionAsync(string realm, string action = null, string bindCredential = null, string bindDn = null,
-        string componentId = null, string connectionTimeout = null, string connectionUrl = null, string useTruststoreSpi = null, CancellationToken cancellationToken = default)
+    public async Task<bool> TestLdapConnectionAsync(string realm, string? action = null, string? bindCredential = null, string? bindDn = null,
+        string? componentId = null, string? connectionTimeout = null, string? connectionUrl = null, string? useTruststoreSpi = null, CancellationToken cancellationToken = default)
     {
         var response = await GetBaseUrl(realm)
             .AppendPathSegment($"/admin/realms/{realm}/testLDAPConnection")

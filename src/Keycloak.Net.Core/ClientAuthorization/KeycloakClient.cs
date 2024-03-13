@@ -25,9 +25,9 @@ public partial class KeycloakClient
         .ConfigureAwait(false);
 
     public async Task<IEnumerable<AuthorizationPermission>> GetAuthorizationPermissionsAsync(string realm, string clientId, AuthorizationPermissionType? ofPermissionType = null,
-        int? first = null, int? max = null, string name = null, string resource = null, string scope = null, CancellationToken cancellationToken = default)
+        int? first = null, int? max = null, string? name = null, string? resource = null, string? scope = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,
@@ -153,10 +153,10 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<Policy>> GetAuthorizationPoliciesAsync(string realm, string clientId,
         int? first = null, int? max = null,
-        string name = null, string resource = null,
-        string scope = null, bool? permission = null, CancellationToken cancellationToken = default)
+        string? name = null, string? resource = null,
+        string? scope = null, bool? permission = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,
@@ -175,10 +175,10 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<RolePolicy>> GetRolePoliciesAsync(string realm, string clientId,
         int? first = null, int? max = null,
-        string name = null, string resource = null,
-        string scope = null, bool? permission = null, CancellationToken cancellationToken = default)
+        string? name = null, string? resource = null,
+        string? scope = null, bool? permission = null, CancellationToken cancellationToken = default)
     {
-        var queryParams = new Dictionary<string, object>
+        var queryParams = new Dictionary<string, object?>
         {
             [nameof(first)] = first,
             [nameof(max)] = max,

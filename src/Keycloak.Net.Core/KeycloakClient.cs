@@ -16,33 +16,30 @@ public partial class KeycloakClient
     });
 
     private readonly Url _url;
-    private readonly string _userName;
-    private readonly string _password;
-    private readonly string _clientSecret;
-    private readonly Func<string> _getToken;
+    private readonly string? _userName;
+    private readonly string? _password;
+    private readonly string? _clientSecret;
+    private readonly Func<string>? _getToken;
     private readonly KeycloakOptions _options;
 
-    private KeycloakClient(string url, KeycloakOptions options)
+    private KeycloakClient(string url, KeycloakOptions? options)
     {
         _url = url;
         _options = options ?? new KeycloakOptions();
     }
 
-    public KeycloakClient(string url, string userName, string password, KeycloakOptions options = null)
-        : this(url, options)
+    public KeycloakClient(string url, string userName, string password, KeycloakOptions? options = null) : this(url, options)
     {
         _userName = userName;
         _password = password;
     }
 
-    public KeycloakClient(string url, string clientSecret, KeycloakOptions options = null)
-        : this(url, options)
+    public KeycloakClient(string url, string clientSecret, KeycloakOptions? options = null) : this(url, options)
     {
         _clientSecret = clientSecret;
     }
 
-    public KeycloakClient(string url, Func<string> getToken, KeycloakOptions options = null)
-        : this(url, options)
+    public KeycloakClient(string url, Func<string> getToken, KeycloakOptions? options = null) : this(url, options)
     {
         _getToken = getToken;
     }
@@ -92,7 +89,7 @@ public partial class KeycloakClient
     }
 }
 
-public class KeycloakOptions(string prefix = "", string adminClientId = "admin-cli", string authenticationRealm = default)
+public class KeycloakOptions(string prefix = "", string adminClientId = "admin-cli", string? authenticationRealm = null)
 {
     public string Prefix { get; } = prefix.TrimStart('/').TrimEnd('/');
 
@@ -103,7 +100,7 @@ public class KeycloakOptions(string prefix = "", string adminClientId = "admin-c
     ///
     /// <value> The authentication realm.   </value>
     ///-------------------------------------------------------------------------------------------------
-    public string AuthenticationRealm { get; } = authenticationRealm;
+    public string? AuthenticationRealm { get; } = authenticationRealm;
 
     ///-------------------------------------------------------------------------------------------------
     /// <summary>
