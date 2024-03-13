@@ -9,7 +9,7 @@ public partial class KeycloakClientShould
     [InlineData("master")]
     public async Task GetServerInfoAsync(string realm)
     {
-        var result = await _client.GetServerInfoAsync(realm).ConfigureAwait(false);
+        var result = await _client.GetServerInfoAsync(realm);
         Assert.NotNull(result);
     }
 
