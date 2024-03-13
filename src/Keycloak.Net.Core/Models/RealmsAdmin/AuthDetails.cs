@@ -5,11 +5,11 @@ namespace Keycloak.Net.Models.RealmsAdmin;
 public class AuthDetails
 {
     [JsonProperty("clientId")]
-    public string ClientId { get; set; }
+    public string? ClientId { get; set; }
     [JsonProperty("ipAddress")]
-    public string IpAddress { get; set; }
+    public string? IpAddress { get; set; }
     [JsonProperty("realmId")]
-    public string RealmId { get; set; }
+    public string? RealmId { get; set; }
     [JsonProperty("userId")]
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
 }

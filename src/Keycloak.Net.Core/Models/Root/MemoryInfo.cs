@@ -8,13 +8,13 @@ public class MemoryInfo
     public long Total { get; set; }
 
     [JsonProperty("totalFormated")]
-    public string TotalFormatted { get; set; }
+    public string? TotalFormatted { get; set; }
 
     [JsonProperty("used")]
     public long Used { get; set; }
 
     [JsonProperty("usedFormated")]
-    public string UsedFormatted { get; set; }
+    public string? UsedFormatted { get; set; }
 
     [JsonProperty("free")]
     public long Free { get; set; }
@@ -23,5 +23,5 @@ public class MemoryInfo
     public long FreePercentage { get; set; }
 
     [JsonProperty("freeFormated")]
-    public string FreeFormatted { get; set; }
+    public string? FreeFormatted { get; set; }
 }

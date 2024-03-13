@@ -11,8 +11,8 @@ public class KeycloakStorageLdapMappersLdapStorageMapperMetadata
     public bool? KeycloakToFedSyncSupported { get; set; }
 
     [JsonProperty("fedToKeycloakSyncMessage")]
-    public string FedToKeycloakSyncMessage { get; set; }
+    public string? FedToKeycloakSyncMessage { get; set; }
 
     [JsonProperty("keycloakToFedSyncMessage")]
-    public string KeycloakToFedSyncMessage { get; set; }
+    public string? KeycloakToFedSyncMessage { get; set; }
 }

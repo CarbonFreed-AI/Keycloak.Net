@@ -8,5 +8,5 @@ public class EmailTemplateClass
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public AccountProviders Providers { get; set; }
+    public AccountProviders? Providers { get; set; }
 }

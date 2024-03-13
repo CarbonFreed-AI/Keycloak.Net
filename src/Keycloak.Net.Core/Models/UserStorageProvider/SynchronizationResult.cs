@@ -13,7 +13,7 @@ public class SynchronizationResult
     [JsonProperty("removed")]
     public int? Removed { get; set; }
     [JsonProperty("status")]
-    public string Status { get; set; }
+    public string? Status { get; set; }
     [JsonProperty("updated")]
     public int? Updated { get; set; }
 }

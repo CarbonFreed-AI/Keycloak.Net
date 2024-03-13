@@ -8,5 +8,5 @@ public class Storage
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public StorageProviders Providers { get; set; }
+    public StorageProviders? Providers { get; set; }
 }

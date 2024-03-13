@@ -12,13 +12,16 @@ public abstract class JsonEnumConverter<TEnum> : JsonConverter
 
     protected abstract TEnum ConvertFromString(string s);
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
+        if (value == null) throw new ArgumentNullException(nameof(value));
+        
         var actualValue = (TEnum)value;
         writer.WriteValue(ConvertToString(actualValue));
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.StartArray)
         {
@@ -29,6 +32,7 @@ public abstract class JsonEnumConverter<TEnum> : JsonConverter
             return items;
         }
 
+        if (reader.Value == null) throw new JsonException("Cannot deserialize enum value. Value is null.");
         string s = (string)reader.Value;
         return ConvertFromString(s);
     }

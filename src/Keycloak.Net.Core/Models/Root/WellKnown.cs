@@ -8,5 +8,5 @@ public class WellKnown
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public WellKnownProviders Providers { get; set; }
+    public WellKnownProviders? Providers { get; set; }
 }

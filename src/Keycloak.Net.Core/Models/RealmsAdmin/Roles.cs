@@ -6,7 +6,7 @@ namespace Keycloak.Net.Models.RealmsAdmin;
 public class Roles
 {
     [JsonProperty("client")]
-    public IDictionary<string, object> Client { get; set; }
+    public IDictionary<string, object>? Client { get; set; }
     [JsonProperty("realm")]
-    public IEnumerable<Role> Realm { get; set; }
+    public IEnumerable<Role>? Realm { get; set; }
 }

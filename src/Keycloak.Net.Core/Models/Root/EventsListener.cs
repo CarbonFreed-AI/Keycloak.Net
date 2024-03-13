@@ -8,5 +8,5 @@ public class EventsListener
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public EventsListenerProviders Providers { get; set; }
+    public EventsListenerProviders? Providers { get; set; }
 }

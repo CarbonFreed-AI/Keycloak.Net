@@ -8,5 +8,5 @@ public class Truststore
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public TruststoreProviders Providers { get; set; }
+    public TruststoreProviders? Providers { get; set; }
 }

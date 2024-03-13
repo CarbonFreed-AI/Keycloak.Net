@@ -5,25 +5,25 @@ namespace Keycloak.Net.Models.Clients;
 public class Client
 {
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
     [JsonProperty("clientId")]
-    public string ClientId { get; set; }
+    public string? ClientId { get; set; }
     [JsonProperty("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [JsonProperty("rootUrl")]
-    public string RootUrl { get; set; } 
+    public string? RootUrl { get; set; } 
     [JsonProperty("baseUrl")]
-    public string BaseUrl { get; set; } //Resolves to Home Url on the client profile page
+    public string? BaseUrl { get; set; } //Resolves to Home Url on the client profile page
     [JsonProperty("surrogateAuthRequired")]
     public bool? SurrogateAuthRequired { get; set; }
     [JsonProperty("enabled")]
     public bool? Enabled { get; set; }
     [JsonProperty("clientAuthenticatorType")]
-    public string ClientAuthenticatorType { get; set; }
+    public string? ClientAuthenticatorType { get; set; }
     [JsonProperty("redirectUris")]
-    public IEnumerable<string> RedirectUris { get; set; }
+    public IEnumerable<string>? RedirectUris { get; set; }
     [JsonProperty("webOrigins")]
-    public IEnumerable<object> WebOrigins { get; set; }
+    public IEnumerable<object>? WebOrigins { get; set; }
     [JsonProperty("notBefore")]
     public int? NotBefore { get; set; }
     [JsonProperty("bearerOnly")]
@@ -43,25 +43,25 @@ public class Client
     [JsonProperty("frontchannelLogout")]
     public bool? FrontChannelLogout { get; set; }
     [JsonProperty("protocol")]
-    public string Protocol { get; set; }
+    public string? Protocol { get; set; }
     [JsonProperty("attributes")]
-    public IDictionary<string, object> Attributes { get; set; }
+    public IDictionary<string, object>? Attributes { get; set; }
     [JsonProperty("authenticationFlowBindingOverrides")]
-    public IDictionary<string, object> AuthenticationFlowBindingOverrides { get; set; }
+    public IDictionary<string, object>? AuthenticationFlowBindingOverrides { get; set; }
     [JsonProperty("fullScopeAllowed")]
     public bool? FullScopeAllowed { get; set; }
     [JsonProperty("nodeReRegistrationTimeout")]
     public int? NodeReregistrationTimeout { get; set; }
     [JsonProperty("protocolMappers")]
-    public IEnumerable<ClientProtocolMapper> ProtocolMappers { get; set; }
+    public IEnumerable<ClientProtocolMapper>? ProtocolMappers { get; set; }
     [JsonProperty("defaultClientScopes")]
-    public IEnumerable<string> DefaultClientScopes { get; set; }
+    public IEnumerable<string>? DefaultClientScopes { get; set; }
     [JsonProperty("optionalClientScopes")]
-    public IEnumerable<string> OptionalClientScopes { get; set; }
+    public IEnumerable<string>? OptionalClientScopes { get; set; }
     [JsonProperty("access")]
-    public ClientAccess Access { get; set; }
+    public ClientAccess? Access { get; set; }
     [JsonProperty("secret")]
-    public string Secret { get; set; }
+    public string? Secret { get; set; }
     [JsonProperty("authorizationServicesEnabled")]
     public bool? AuthorizationServicesEnabled { get; set; }
 }

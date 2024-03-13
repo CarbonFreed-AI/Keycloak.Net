@@ -8,5 +8,5 @@ public class Hostname
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public HostnameProviders Providers { get; set; }
+    public HostnameProviders? Providers { get; set; }
 }

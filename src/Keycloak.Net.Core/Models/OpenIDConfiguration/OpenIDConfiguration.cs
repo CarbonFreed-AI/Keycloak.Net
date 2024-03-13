@@ -5,76 +5,76 @@ namespace Keycloak.Net.Models.OpenIDConfiguration;
 public class OpenIDConfiguration
 {
     [JsonProperty("issuer")]
-    public Uri Issuer { get; set; }
+    public Uri? Issuer { get; set; }
 
     [JsonProperty("authorization_endpoint")]
-    public Uri AuthorizationEndpoint { get; set; }
+    public Uri? AuthorizationEndpoint { get; set; }
 
     [JsonProperty("token_endpoint")]
-    public Uri TokenEndpoint { get; set; }
+    public Uri? TokenEndpoint { get; set; }
 
     [JsonProperty("token_introspection_endpoint")]
-    public Uri TokenIntrospectionEndpoint { get; set; }
+    public Uri? TokenIntrospectionEndpoint { get; set; }
 
     [JsonProperty("userinfo_endpoint")]
-    public Uri UserinfoEndpoint { get; set; }
+    public Uri? UserinfoEndpoint { get; set; }
 
     [JsonProperty("end_session_endpoint")]
-    public Uri EndSessionEndpoint { get; set; }
+    public Uri? EndSessionEndpoint { get; set; }
 
     [JsonProperty("jwks_uri")]
-    public Uri JwksUri { get; set; }
+    public Uri? JwksUri { get; set; }
 
     [JsonProperty("check_session_iframe")]
-    public Uri CheckSessionIframe { get; set; }
+    public Uri? CheckSessionIframe { get; set; }
 
     [JsonProperty("grant_types_supported")]
-    public string[] GrantTypesSupported { get; set; }
+    public string[]? GrantTypesSupported { get; set; }
 
     [JsonProperty("response_types_supported")]
-    public string[] ResponseTypesSupported { get; set; }
+    public string[]? ResponseTypesSupported { get; set; }
 
     [JsonProperty("subject_types_supported")]
-    public string[] SubjectTypesSupported { get; set; }
+    public string[]? SubjectTypesSupported { get; set; }
 
     [JsonProperty("id_token_signing_alg_values_supported")]
-    public string[] IdTokenSigningAlgValuesSupported { get; set; }
+    public string[]? IdTokenSigningAlgValuesSupported { get; set; }
 
     [JsonProperty("id_token_encryption_alg_values_supported")]
-    public string[] IdTokenEncryptionAlgValuesSupported { get; set; }
+    public string[]? IdTokenEncryptionAlgValuesSupported { get; set; }
 
     [JsonProperty("id_token_encryption_enc_values_supported")]
-    public string[] IdTokenEncryptionEncValuesSupported { get; set; }
+    public string[]? IdTokenEncryptionEncValuesSupported { get; set; }
 
     [JsonProperty("userinfo_signing_alg_values_supported")]
-    public string[] UserinfoSigningAlgValuesSupported { get; set; }
+    public string[]? UserinfoSigningAlgValuesSupported { get; set; }
 
     [JsonProperty("request_object_signing_alg_values_supported")]
-    public string[] RequestObjectSigningAlgValuesSupported { get; set; }
+    public string[]? RequestObjectSigningAlgValuesSupported { get; set; }
 
     [JsonProperty("response_modes_supported")]
-    public string[] ResponseModesSupported { get; set; }
+    public string[]? ResponseModesSupported { get; set; }
 
     [JsonProperty("registration_endpoint")]
-    public Uri RegistrationEndpoint { get; set; }
+    public Uri? RegistrationEndpoint { get; set; }
 
     [JsonProperty("token_endpoint_auth_methods_supported")]
-    public string[] TokenEndpointAuthMethodsSupported { get; set; }
+    public string[]? TokenEndpointAuthMethodsSupported { get; set; }
 
     [JsonProperty("token_endpoint_auth_signing_alg_values_supported")]
-    public string[] TokenEndpointAuthSigningAlgValuesSupported { get; set; }
+    public string[]? TokenEndpointAuthSigningAlgValuesSupported { get; set; }
 
     [JsonProperty("claims_supported")]
-    public string[] ClaimsSupported { get; set; }
+    public string[]? ClaimsSupported { get; set; }
 
     [JsonProperty("claim_types_supported")]
-    public string[] ClaimTypesSupported { get; set; }
+    public string[]? ClaimTypesSupported { get; set; }
 
     [JsonProperty("claims_parameter_supported")]
     public bool ClaimsParameterSupported { get; set; }
 
     [JsonProperty("scopes_supported")]
-    public string[] ScopesSupported { get; set; }
+    public string[]? ScopesSupported { get; set; }
 
     [JsonProperty("request_parameter_supported")]
     public bool RequestParameterSupported { get; set; }
@@ -83,11 +83,11 @@ public class OpenIDConfiguration
     public bool RequestUriParameterSupported { get; set; }
 
     [JsonProperty("code_challenge_methods_supported")]
-    public string[] CodeChallengeMethodsSupported { get; set; }
+    public string[]? CodeChallengeMethodsSupported { get; set; }
 
     [JsonProperty("tls_client_certificate_bound_access_tokens")]
     public bool TlsClientCertificateBoundAccessTokens { get; set; }
 
     [JsonProperty("introspection_endpoint")]
-    public Uri IntrospectionEndpoint { get; set; }
+    public Uri? IntrospectionEndpoint { get; set; }
 }

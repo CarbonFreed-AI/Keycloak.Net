@@ -5,7 +5,7 @@ namespace Keycloak.Net.Models.Root;
 public class ClientInstallation
 {
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonProperty("protocol")]
     public Protocol Protocol { get; set; }
@@ -14,14 +14,14 @@ public class ClientInstallation
     public bool? DownloadOnly { get; set; }
 
     [JsonProperty("displayType")]
-    public string DisplayType { get; set; }
+    public string? DisplayType { get; set; }
 
     [JsonProperty("helpText")]
-    public string HelpText { get; set; }
+    public string? HelpText { get; set; }
 
     [JsonProperty("filename")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [JsonProperty("mediaType")]
-    public string MediaType { get; set; }
+    public string? MediaType { get; set; }
 }

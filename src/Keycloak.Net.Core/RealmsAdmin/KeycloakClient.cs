@@ -47,7 +47,7 @@ public partial class KeycloakClient
 
     public async Task<IEnumerable<AdminEvent>> GetAdminEventsAsync(string realm, string? authClient = null, string? authIpAddress = null, string? authRealm = null, string? authUser = null,
         string? dateFrom = null, string? dateTo = null, int? first = null, int? max = null,
-        IEnumerable<string> operationTypes = null, string? resourcePath = null, IEnumerable<string> resourceTypes = null, CancellationToken cancellationToken = default)
+        IEnumerable<string>? operationTypes = null, string? resourcePath = null, IEnumerable<string>? resourceTypes = null, CancellationToken cancellationToken = default)
     {
         var queryParams = new Dictionary<string, object?>
         {

@@ -8,5 +8,5 @@ public class ActionTokenHandler
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ActionTokenHandlerProviders Providers { get; set; }
+    public ActionTokenHandlerProviders? Providers { get; set; }
 }

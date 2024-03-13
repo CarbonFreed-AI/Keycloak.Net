@@ -8,5 +8,5 @@ public class Hash
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public HashProviders Providers { get; set; }
+    public HashProviders? Providers { get; set; }
 }

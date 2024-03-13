@@ -18,11 +18,11 @@ public partial class KeycloakClient
         .PostJsonAsync(user, HttpCompletionOption.ResponseContentRead, cancellationToken)
         .ConfigureAwait(false)).ResponseMessage;
 
-    public async Task<string> CreateAndRetrieveUserIdAsync(string realm, User user, CancellationToken cancellationToken = default)
+    public async Task<string?> CreateAndRetrieveUserIdAsync(string realm, User user, CancellationToken cancellationToken = default)
     {
         var response = await InternalCreateUserAsync(realm, user, cancellationToken).ConfigureAwait(false);
-        string locationPathAndQuery = response.Headers.Location.PathAndQuery;
-        string userId = response.IsSuccessStatusCode ? locationPathAndQuery.Substring(locationPathAndQuery.LastIndexOf("/", StringComparison.Ordinal) + 1) : null;
+        string? locationPathAndQuery = response.Headers.Location?.PathAndQuery;
+        string? userId = response.IsSuccessStatusCode ? locationPathAndQuery?.Substring(locationPathAndQuery.LastIndexOf('/') + 1) : null;
         return userId;
     }
 
@@ -248,13 +248,13 @@ public partial class KeycloakClient
         return response.ResponseMessage;
     }
 
-    public async Task<SetPasswordResponse> SetUserPasswordAsync(string realm, string userId, string password, CancellationToken cancellationToken = default)
+    public async Task<SetPasswordResponse?> SetUserPasswordAsync(string realm, string userId, string password, CancellationToken cancellationToken = default)
     {
         var response = await InternalResetUserPasswordAsync(realm, userId, password, false, cancellationToken);
         if (response.IsSuccessStatusCode)
             return new() { Success = response.IsSuccessStatusCode };
 
-        var jsonString = await response.Content.ReadAsStringAsync();
+        var jsonString = await response.Content.ReadAsStringAsync(cancellationToken);
         return JsonConvert.DeserializeObject<SetPasswordResponse>(jsonString);
     }
 

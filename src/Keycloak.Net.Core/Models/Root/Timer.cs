@@ -8,5 +8,5 @@ public class Timer
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public TimerProviders Providers { get; set; }
+    public TimerProviders? Providers { get; set; }
 }

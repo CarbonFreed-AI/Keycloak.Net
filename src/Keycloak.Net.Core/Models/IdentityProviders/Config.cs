@@ -5,13 +5,13 @@ namespace Keycloak.Net.Models.IdentityProviders;
 public class Config
 {
     [JsonProperty("hideOnLoginPage")]
-    public string HideOnLoginPage { get; set; }
+    public string? HideOnLoginPage { get; set; }
     [JsonProperty("clientSecret")]
-    public string ClientSecret { get; set; }
+    public string? ClientSecret { get; set; }
     [JsonProperty("clientId")]
-    public string ClientId { get; set; }
+    public string? ClientId { get; set; }
     [JsonProperty("disableUserInfo")]
-    public string DisableUserInfo { get; set; }
+    public string? DisableUserInfo { get; set; }
     [JsonProperty("useJwksUrl")]
-    public string UseJwksUrl { get; set; }
+    public string? UseJwksUrl { get; set; }
 }

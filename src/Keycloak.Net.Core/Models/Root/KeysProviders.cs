@@ -5,20 +5,20 @@ namespace Keycloak.Net.Models.Root;
 public class KeysProviders
 {
     [JsonProperty("rsa")]
-    public HasOrder Rsa { get; set; }
+    public HasOrder? Rsa { get; set; }
 
     [JsonProperty("java-keystore")]
-    public HasOrder JavaKeystore { get; set; }
+    public HasOrder? JavaKeystore { get; set; }
 
     [JsonProperty("rsa-generated")]
-    public HasOrder RsaGenerated { get; set; }
+    public HasOrder? RsaGenerated { get; set; }
 
     [JsonProperty("aes-generated")]
-    public HasOrder AesGenerated { get; set; }
+    public HasOrder? AesGenerated { get; set; }
 
     [JsonProperty("ecdsa-generated")]
-    public HasOrder EcdsaGenerated { get; set; }
+    public HasOrder? EcdsaGenerated { get; set; }
 
     [JsonProperty("hmac-generated")]
-    public HasOrder HmacGenerated { get; set; }
+    public HasOrder? HmacGenerated { get; set; }
 }

@@ -8,5 +8,5 @@ public class LdapMapper
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public LdapMapperProviders Providers { get; set; }
+    public LdapMapperProviders? Providers { get; set; }
 }

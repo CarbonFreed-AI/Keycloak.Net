@@ -8,5 +8,5 @@ public class Default
     public long Order { get; set; }
 
     [JsonProperty("operationalInfo")]
-    public OperationalInfo OperationalInfo { get; set; }
+    public OperationalInfo? OperationalInfo { get; set; }
 }

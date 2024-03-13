@@ -8,5 +8,5 @@ public class BruteForceProtector
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public BruteForceProtectorProviders Providers { get; set; }
+    public BruteForceProtectorProviders? Providers { get; set; }
 }

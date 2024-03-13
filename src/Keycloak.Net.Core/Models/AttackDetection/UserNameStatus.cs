@@ -9,7 +9,7 @@ public class UserNameStatus
     [JsonProperty("disabled")]
     public bool? Disabled { get; set; }
     [JsonProperty("lastIPFailure")]
-    public string LastIpFailure { get; set; }
+    public string? LastIpFailure { get; set; }
     [JsonProperty("lastFailure")]
     public int? LastFailure { get; set; }
 }

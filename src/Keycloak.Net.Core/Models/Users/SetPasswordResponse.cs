@@ -6,7 +6,7 @@ public class SetPasswordResponse
 {
     public bool Success { get; set; }
     [JsonProperty("error")]
-    public string Error { get; set; }
+    public string? Error { get; set; }
     [JsonProperty("error_description")]
-    public string ErrorDescription { get; set; }
+    public string? ErrorDescription { get; set; }
 }

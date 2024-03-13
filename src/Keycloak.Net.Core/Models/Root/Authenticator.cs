@@ -8,5 +8,5 @@ public class Authenticator
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public Dictionary<string, HasOrder> Providers { get; set; }
+    public Dictionary<string, HasOrder>? Providers { get; set; }
 }

@@ -8,5 +8,5 @@ public class Policy
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public PolicyProviders Providers { get; set; }
+    public PolicyProviders? Providers { get; set; }
 }

@@ -8,5 +8,5 @@ public class Scripting
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ScriptingProviders Providers { get; set; }
+    public ScriptingProviders? Providers { get; set; }
 }

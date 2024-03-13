@@ -2,9 +2,9 @@
 
 public static class DynamicExtensions
 {
-    public static IDictionary<string, object> DynamicToDictionary(dynamic obj) => new Dictionary<string, object?>(obj);
+    public static IDictionary<string, object> DynamicToDictionary(dynamic obj) => new Dictionary<string, object>(obj);
 
-    private static string GetFirstPropertyName(IDictionary<string, object> map) => map.Keys.FirstOrDefault();
+    private static string? GetFirstPropertyName(IDictionary<string, object> map) => map.Keys.FirstOrDefault();
 
     public static object GetFirstPropertyValue(dynamic obj)
     {

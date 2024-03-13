@@ -8,5 +8,5 @@ public class Oauth2TokenIntrospection
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public Oauth2TokenIntrospectionProviders Providers { get; set; }
+    public Oauth2TokenIntrospectionProviders? Providers { get; set; }
 }

@@ -5,8 +5,8 @@ namespace Keycloak.Net.Models.Root;
 public class BuiltinProtocolMappers
 {
     [JsonProperty("saml")]
-    public List<Saml> Saml { get; set; }
+    public List<Saml>? Saml { get; set; }
 
     [JsonProperty("openid-connect")]
-    public List<OpenIdConnect> OpenIdConnect { get; set; }
+    public List<OpenIdConnect>? OpenIdConnect { get; set; }
 }

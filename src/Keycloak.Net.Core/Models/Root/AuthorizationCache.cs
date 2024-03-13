@@ -8,5 +8,5 @@ public class AuthorizationCache
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public HasDefault Providers { get; set; }
+    public HasDefault? Providers { get; set; }
 }

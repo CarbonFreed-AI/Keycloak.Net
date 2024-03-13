@@ -8,5 +8,5 @@ public class Port
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ExportProviders Providers { get; set; }
+    public ExportProviders? Providers { get; set; }
 }

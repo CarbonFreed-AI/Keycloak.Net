@@ -8,5 +8,5 @@ public class Theme
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ThemeProviders Providers { get; set; }
+    public ThemeProviders? Providers { get; set; }
 }

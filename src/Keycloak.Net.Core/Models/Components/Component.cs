@@ -5,17 +5,17 @@ namespace Keycloak.Net.Models.Components;
 public class Component
 {
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
     [JsonProperty("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [JsonProperty("providerId")]
-    public string ProviderId { get; set; }
+    public string? ProviderId { get; set; }
     [JsonProperty("providerType")]
-    public string ProviderType { get; set; }
+    public string? ProviderType { get; set; }
     [JsonProperty("parentId")]
-    public string ParentId { get; set; }
+    public string? ParentId { get; set; }
     [JsonProperty("config")]
-    public Config Config { get; set; }
+    public Config? Config { get; set; }
     [JsonProperty("subType")]
-    public string SubType { get; set; }
+    public string? SubType { get; set; }
 }

@@ -6,14 +6,14 @@ namespace Keycloak.Net.Models.Root;
 public class KeycloakStorageLdapMappersLdapStorageMapper
 {
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonProperty("helpText")]
-    public string HelpText { get; set; }
+    public string? HelpText { get; set; }
 
     [JsonProperty("properties")]
-    public List<ConfigProperty> Properties { get; set; }
+    public List<ConfigProperty>? Properties { get; set; }
 
     [JsonProperty("metadata")]
-    public KeycloakStorageLdapMappersLdapStorageMapperMetadata Metadata { get; set; }
+    public KeycloakStorageLdapMappersLdapStorageMapperMetadata? Metadata { get; set; }
 }

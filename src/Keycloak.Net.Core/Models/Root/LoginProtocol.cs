@@ -8,5 +8,5 @@ public class LoginProtocol
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public LoginProtocolProviders Providers { get; set; }
+    public LoginProtocolProviders? Providers { get; set; }
 }

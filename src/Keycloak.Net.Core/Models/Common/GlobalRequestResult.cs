@@ -5,7 +5,7 @@ namespace Keycloak.Net.Models.Common;
 public class GlobalRequestResult
 {
     [JsonProperty("failedRequests")]
-    public IEnumerable<string> FailedRequests { get; set; }
+    public IEnumerable<string>? FailedRequests { get; set; }
     [JsonProperty("successRequests")]
-    public IEnumerable<string> SuccessRequests { get; set; }
+    public IEnumerable<string>? SuccessRequests { get; set; }
 }

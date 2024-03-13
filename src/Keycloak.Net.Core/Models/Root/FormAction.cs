@@ -8,5 +8,5 @@ public class FormAction
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public FormActionProviders Providers { get; set; }
+    public FormActionProviders? Providers { get; set; }
 }

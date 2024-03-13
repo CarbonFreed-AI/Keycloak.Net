@@ -8,5 +8,5 @@ public class ConnectionsJpa
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ConnectionsJpaProviders Providers { get; set; }
+    public ConnectionsJpaProviders? Providers { get; set; }
 }

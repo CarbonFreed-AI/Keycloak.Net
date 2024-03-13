@@ -5,17 +5,17 @@ namespace Keycloak.Net.Models.Components;
 public class Config
 {
     [JsonProperty("priority")]
-    public IEnumerable<string> Priority { get; set; }
+    public IEnumerable<string>? Priority { get; set; }
     [JsonProperty("allowdefaultscopes")]
-    public IEnumerable<string> AllowDefaultScopes { get; set; }
+    public IEnumerable<string>? AllowDefaultScopes { get; set; }
     [JsonProperty("maxclients")]
-    public IEnumerable<string> MaxClients { get; set; }
+    public IEnumerable<string>? MaxClients { get; set; }
     [JsonProperty("allowedprotocolmappertypes")]
-    public IEnumerable<string> AllowedProtocolMapperTypes { get; set; }
+    public IEnumerable<string>? AllowedProtocolMapperTypes { get; set; }
     [JsonProperty("algorithm")]
-    public IEnumerable<string> Algorithm { get; set; }
+    public IEnumerable<string>? Algorithm { get; set; }
     [JsonProperty("hostsendingregistrationrequestmustmatch")]
-    public IEnumerable<string> HostSendingRegistrationRequestMustMatch { get; set; }
+    public IEnumerable<string>? HostSendingRegistrationRequestMustMatch { get; set; }
     [JsonProperty("clienturismustmatch")]
-    public IEnumerable<string> ClientUrisMustMatch { get; set; }
+    public IEnumerable<string>? ClientUrisMustMatch { get; set; }
 }

@@ -8,5 +8,5 @@ public class ClientStorage
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public MetadataClass Providers { get; set; }
+    public MetadataClass? Providers { get; set; }
 }

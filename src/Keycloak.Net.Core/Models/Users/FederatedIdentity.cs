@@ -5,9 +5,9 @@ namespace Keycloak.Net.Models.Users;
 public class FederatedIdentity
 {
     [JsonProperty("identityProvider")]
-    public string IdentityProvider { get; set; }
+    public string? IdentityProvider { get; set; }
     [JsonProperty("userId")]
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
     [JsonProperty("userName")]
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 }

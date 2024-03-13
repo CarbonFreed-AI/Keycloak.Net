@@ -8,5 +8,5 @@ public class JtaLookup
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public JtaLookupProviders Providers { get; set; }
+    public JtaLookupProviders? Providers { get; set; }
 }

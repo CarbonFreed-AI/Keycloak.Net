@@ -5,5 +5,5 @@ namespace Keycloak.Net.Models.Clients;
 public class Permission : Resource
 {
     [JsonProperty("claims")]
-    public IDictionary<string, object> Claims { get; set; }
+    public IDictionary<string, object>? Claims { get; set; }
 }

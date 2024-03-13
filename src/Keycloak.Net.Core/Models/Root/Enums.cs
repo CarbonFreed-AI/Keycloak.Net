@@ -5,11 +5,11 @@ namespace Keycloak.Net.Models.Root;
 public class Enums
 {
     [JsonProperty("operationType")]
-    public List<string> OperationType { get; set; }
+    public List<string>? OperationType { get; set; }
 
     [JsonProperty("eventType")]
-    public List<string> EventType { get; set; }
+    public List<string>? EventType { get; set; }
 
     [JsonProperty("resourceType")]
-    public List<string> ResourceType { get; set; }
+    public List<string>? ResourceType { get; set; }
 }

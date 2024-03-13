@@ -5,5 +5,5 @@ namespace Keycloak.Net.Models.Root;
 public class TruststoreProviders
 {
     [JsonProperty("file")]
-    public HasOrder File { get; set; }
+    public HasOrder? File { get; set; }
 }

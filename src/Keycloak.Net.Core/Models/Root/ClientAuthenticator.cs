@@ -8,5 +8,5 @@ public class ClientAuthenticator
     public bool? Internal { get; set; }
 
     [JsonProperty("providers")]
-    public ClientAuthenticatorProviders Providers { get; set; }
+    public ClientAuthenticatorProviders? Providers { get; set; }
 }
